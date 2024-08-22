@@ -1,12 +1,73 @@
+:root {
+  --darker: #0f0d0e;
+  --dark: #231f20;
+  --lighter: #fdecf1;
+  --light: #e7dcdf;
+  --accent-dark: #faf2c8;
+  --accent-light: #ed203d;
+
+  --background-color: var(--darker);
+  --foreground-color: var(--dark);
+  --text-color: var(--lighter);
+  --accent-color: var(--accent-dark);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: var(--light);
+    --foreground-color: var(--lighter);
+    --text-color: var(--darker);
+    --accent-color: var(--accent-light);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
+body,
+#root,
+main {
+  height: 100%;
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
   padding: 1rem;
-  background-color: #222;
-  color: #f4f4f4;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+button {
+  background-color: var(--accent-color);
+  color: var(--foreground-color);
+  border: none;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:disabled {
+  background-color: var(--dark);
+  color: var(--darker);
+  cursor: not-allowed;
+}
+
+button > svg {
+  width: 1.6rem;
 }
