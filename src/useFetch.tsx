@@ -6,12 +6,16 @@ export function useFetch<D>(url: RequestInfo | URL, options?: RequestInit) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     const fetchData = async () => {
       setIsLoading(true);
-      setError(null);
 
       try {
-        const response = await fetch(url, options);
+        const response = await fetch(url, {
+          ...options,
+          signal: abortController.signal,
+        });
 
         if (!response.ok) {
           throw new Error(`HTTP error: Status ${response.status}`);
@@ -33,6 +37,10 @@ export function useFetch<D>(url: RequestInfo | URL, options?: RequestInit) {
     };
 
     fetchData();
+
+    return () => {
+      abortController.abort();
+    };
   }, [url, options]);
 
   return { data, isLoading, error };
