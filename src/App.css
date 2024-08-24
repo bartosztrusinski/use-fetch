@@ -60,10 +60,20 @@ button {
   margin: 0.5rem;
   cursor: pointer;
   font-weight: 700;
+  transition: all 120ms ease-in;
 }
 
 button:disabled {
   background-color: var(--dark);
   color: var(--darker);
   cursor: not-allowed;
+}
+
+button:is(:hover, :focus-visible):not(:disabled) {
+  scale: 1.1;
+}
+
+button:focuc-visible {
+  outline: 0.125rem solid var(--accent-color);
+  outline-offset: 0.125rem;
 }
