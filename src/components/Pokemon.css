@@ -1,0 +1,19 @@
+.pokemon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.pokemon img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.pokemon p {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--accent-color);
+}
