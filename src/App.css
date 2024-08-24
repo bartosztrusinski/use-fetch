@@ -67,7 +67,3 @@ button:disabled {
   color: var(--darker);
   cursor: not-allowed;
 }
-
-button > svg {
-  width: 1.6rem;
-}
