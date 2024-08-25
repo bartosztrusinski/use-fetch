@@ -6,7 +6,7 @@ export default function LeftArrowIcon() {
       viewBox='0 0 24 24'
       strokeWidth={2}
       stroke='currentColor'
-      style={{ width: '1.6rem' }}>
+      style={{ width: '1.5rem' }}>
       <path
         strokeLinecap='round'
         strokeLinejoin='round'
