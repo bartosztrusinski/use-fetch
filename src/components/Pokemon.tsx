@@ -1,39 +1,12 @@
-import { useFetch } from '../hooks/useFetch';
 import Card from './Card';
 import './Pokemon.css';
-
-type Pokemon = {
-  name: string;
-  sprites: {
-    front_default: string;
-    back_default: string;
-  };
-};
+import type { Pokemon } from '../hooks/usePokemon';
 
 type Props = {
-  pokemonId: number;
+  pokemon: Pokemon;
 };
 
-export default function Pokemon({ pokemonId }: Props) {
-  const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
-  const { data: pokemon, isLoading, error } = useFetch<Pokemon>(url);
-
-  if (isLoading || !pokemon) {
-    return (
-      <Card>
-        <p>Loading Pokemon...</p>;
-      </Card>
-    );
-  }
-
-  if (error) {
-    return (
-      <Card>
-        <p>{error.message}</p>
-      </Card>
-    );
-  }
-
+export default function Pokemon({ pokemon }: Props) {
   return (
     <Card>
       <figure className='pokemon'>
