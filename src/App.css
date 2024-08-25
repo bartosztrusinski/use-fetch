@@ -50,14 +50,22 @@ main {
   gap: 1rem;
 }
 
+section {
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
+}
+
 button {
   background-color: var(--accent-color);
   color: var(--foreground-color);
-  border: none;
   aspect-ratio: 1 / 1;
+  min-width: 2.5rem;
+  border: none;
   border-radius: 0.5rem;
   padding: 0.2rem 0.5rem;
-  margin: 0.5rem;
   cursor: pointer;
   font-weight: 700;
   transition: all 120ms ease-in;
@@ -67,13 +75,35 @@ button:disabled {
   background-color: var(--dark);
   color: var(--darker);
   cursor: not-allowed;
+  scale: 1;
 }
 
-button:is(:hover, :focus-visible):not(:disabled) {
+button:is(:hover, :focus-visible) {
   scale: 1.1;
 }
 
-button:focuc-visible {
-  outline: 0.125rem solid var(--accent-color);
-  outline-offset: 0.125rem;
+button:focus-visible {
+  outline: 0.1rem solid var(--accent-color);
+  outline-offset: 0.1rem;
+}
+
+button:has(.loader) {
+  background-color: var(--accent-color);
+  color: var(--foreground-color);
+  opacity: 0.85;
+}
+
+.loader {
+  width: 1.3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 0.2rem solid;
+  border-color: #000 #0000 #0000;
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(1turn);
+  }
 }
