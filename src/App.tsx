@@ -3,12 +3,14 @@ import './App.css';
 import Pokemon from './components/Pokemon';
 import LeftArrowIcon from './components/LeftArrowIcon';
 import RightArrowIcon from './components/RightArrowIcon';
-import { usePokemon } from './hooks/usePokemon';
 import Card from './components/Card';
+import { usePokemon } from './hooks/usePokemon';
+import { useDebounce } from './hooks/useDebounce';
 
 export default function App() {
   const [pokemonId, setPokemonId] = useState(1);
   const { pokemon, error, isLoading } = usePokemon(pokemonId);
+  const debouncedIsLoading = useDebounce(isLoading, 200);
 
   return (
     <main>
@@ -33,9 +35,13 @@ export default function App() {
           <LeftArrowIcon />
         </button>
         <button
-          disabled={isLoading}
+          disabled={debouncedIsLoading}
           onClick={() => setPokemonId((prevId) => prevId + 1)}>
-          {isLoading ? <div className='loader'></div> : <RightArrowIcon />}
+          {debouncedIsLoading ? (
+            <div className='loader'></div>
+          ) : (
+            <RightArrowIcon />
+          )}
         </button>
       </section>
     </main>
